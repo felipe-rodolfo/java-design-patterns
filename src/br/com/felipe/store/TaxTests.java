@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 public class TaxTests {
     public static void main(String[] args) {
-        Budget budget = new Budget(new BigDecimal("100"));
+        Budget budget = new Budget(new BigDecimal("100"), 5);
         TaxCalculator taxCalculator = new TaxCalculator();
         System.out.println(taxCalculator.calculate(budget, new ICMS()));
     }
