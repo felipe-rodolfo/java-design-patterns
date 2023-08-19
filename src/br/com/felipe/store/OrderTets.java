@@ -1,21 +1,23 @@
 package br.com.felipe.store;
-
-import br.com.felipe.store.budget.Budget;
 import br.com.felipe.store.order.GenerateOrder;
 import br.com.felipe.store.order.GenerateOrderHandler;
-import br.com.felipe.store.order.Order;
+import br.com.felipe.store.order.actions.SendOrderEmail;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.Arrays;
 
 public class OrderTets {
     public static void main(String[] args) {
-        String client = args[0];
-        BigDecimal budgetValue = new BigDecimal(args[1]);
-        int itensQuantity = Integer.parseInt(args[2]);
+        String client = "Brian D.";
+        BigDecimal budgetValue = new BigDecimal(300);
+        int itensQuantity = Integer.parseInt(String.valueOf(2));
 
         GenerateOrder order = new GenerateOrder(client,budgetValue,itensQuantity);
-        GenerateOrderHandler handler = new GenerateOrderHandler(/*dependency*/);
+        GenerateOrderHandler handler = new GenerateOrderHandler(
+                Arrays.asList(
+                        new SendOrderEmail()
+                )
+        );
         handler.execute(order);
     }
 }
