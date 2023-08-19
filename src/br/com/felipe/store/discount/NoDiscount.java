@@ -8,8 +8,13 @@ public class NoDiscount extends Discount {
     public NoDiscount() {
         super(null);
     }
-
-    public BigDecimal calculate(Budget budget){
+    @Override
+    protected BigDecimal performCalculation(Budget budget) {
         return BigDecimal.ZERO;
+    }
+
+    @Override
+    public boolean isApplicable(Budget budget) {
+        return true;
     }
 }
