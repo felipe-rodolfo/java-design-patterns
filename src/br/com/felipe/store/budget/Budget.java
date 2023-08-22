@@ -44,4 +44,8 @@ public class Budget {
     public void setStatus(BudgetStatus newStatus) {
         status = newStatus;
     }
+
+    public boolean isFinished() {
+        return status instanceof Finished;
+    }
 }
