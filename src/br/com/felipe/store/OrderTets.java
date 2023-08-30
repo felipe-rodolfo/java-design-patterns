@@ -1,6 +1,7 @@
 package br.com.felipe.store;
 import br.com.felipe.store.order.GenerateOrder;
 import br.com.felipe.store.order.GenerateOrderHandler;
+import br.com.felipe.store.order.actions.OrderLog;
 import br.com.felipe.store.order.actions.SendOrderEmail;
 
 import java.math.BigDecimal;
@@ -15,7 +16,8 @@ public class OrderTets {
         GenerateOrder order = new GenerateOrder(client,budgetValue,itensQuantity);
         GenerateOrderHandler handler = new GenerateOrderHandler(
                 Arrays.asList(
-                        new SendOrderEmail()
+                        new SendOrderEmail(),
+                        new OrderLog()
                 )
         );
         handler.execute(order);
