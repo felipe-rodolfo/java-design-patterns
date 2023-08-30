@@ -5,14 +5,16 @@ import br.com.felipe.store.status.Finished;
 import br.com.felipe.store.status.UnderReview;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Budget {
+public class Budget implements Orcable{
     private BigDecimal value;
-    private int itemsQuantity;
     private BudgetStatus status;
-    public Budget(BigDecimal value, int itemsQuantity) {
-        this.value = value;
-        this.itemsQuantity = itemsQuantity;
+    private List<Orcable> items = new ArrayList<>();
+    public Budget() {
+        this.value = BigDecimal.ZERO;
+        this.items = new ArrayList<>();
         this.status = new UnderReview();
     }
 
@@ -34,7 +36,7 @@ public class Budget {
     }
 
     public int getItemsQuantity() {
-        return itemsQuantity;
+        return items.size();
     }
 
     public BigDecimal getValue() {
@@ -47,5 +49,10 @@ public class Budget {
 
     public boolean isFinished() {
         return status instanceof Finished;
+    }
+
+    public void addItem(Orcable item){
+        this.value = value.add(item.getValue());
+        this.items.add(item);
     }
 }
